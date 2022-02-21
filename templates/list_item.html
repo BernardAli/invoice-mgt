@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+List of Invoices
+{% endblock %}
+
+{% block content %}
+    <h1>{{title}}</h1>
+
+    <form method='POST' action='' class="ui form">{% csrf_token %}
+        {{form}}
+        <br>
+        <br>
+        <input type="submit" value='Search' class="ui button"/>
+    </form>
+    <br>
+
+	<table class="ui celled striped table">
+	  <thead>
+          <tr>
+            <th>COUNT</th>
+            <th>DATE</th>
+            <th>CUSTOMER NAME</th>
+            <th>INVOICE NUMBER</th>
+            <th>AMOUNT</th>
+            <th>DELETE</th>
+          </tr>
+        </thead>
+	  <tbody>
+		{% for instance in queryset %}
+          <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{instance.invoice_date}}</td>
+            <td><a href="{% url 'update_invoice' instance.id %}">{{instance.name}}</a></td>
+            <td>{{instance.invoice_number}}</td>
+            <td>{{instance.total}}</td>
+              <td><a href="{% url 'delete_invoice' instance.id %}"><i class="window close icon red"></i></a></td>
+          </tr>
+      {% endfor %}
+	  </tbody>
+	</table>
+
+{% endblock %}

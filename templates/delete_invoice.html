@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% endblock %}
+
+
+{% block content %}
+    <form method="post" action="">
+       {% csrf_token %}
+         <h1>Are you sure you want to delete?</h1><br>
+         <input class="ui red button" type="submit" value="Yes" />
+         <a href="{% url 'list_invoice' %}"><div class="ui primary button">Cancel</div></a>
+    </form>
+{% endblock %}

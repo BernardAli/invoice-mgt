@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{title}}
+{% endblock %}
+
+
+{% block content %}
+    <div class="ui grid">
+        <div class="twelve wide column">
+            <h1>{{title}}</h1>
+
+            <div class="myForm">
+                <form method='POST' action='' class="ui form">{% csrf_token %}
+                  <div class="field">
+                    <div class="two fields">
+                      <div class="field">
+                          <label>Invoice Date</label>
+                          {{form.invoice_date}}
+                      </div>
+                      <div class="field">
+                          <label>Invoice Number</label>
+                          {{form.invoice_number}}
+                      </div>
+                    </div>
+                </div>
+                  <div class="field">
+                    <div class="two fields">
+                      <div class="field">
+                          <label>Customer Name</label>
+                          {{form.name}}
+                      </div>
+                      <div class="field">
+                          <label>Phone Number</label>
+                          {{form.phone_number}}
+                      </div>
+                    </div>
+                </div>
+                  <div class="field">
+                    <div class="fields">
+                      <div class="seven wide field">
+                          <label>Line One</label>
+                          {{form.line_one}}
+                      </div>
+                      <div class="three wide field">
+                          <label>Quantity</label>
+                          {{form.line_one_quantity}}
+                      </div>
+                        <div class="three wide field">
+                          <label>Unit Price</label>
+                          {{form.line_one_unit_price}}
+                      </div>
+                        <div class="three wide field">
+                          <label>Line One Total</label>
+                          {{form.line_one_total_price}}
+                      </div>
+                    </div>
+                </div>
+                  <div class="field">
+                    <div class="fields">
+                      <div class="seven wide field">
+                          <label>Line Two</label>
+                          {{form.line_two}}
+                      </div>
+                      <div class="three wide field">
+                          <label>Quantity</label>
+                          {{form.line_two_quantity}}
+                      </div>
+                        <div class="three wide field">
+                          <label>Unit Price</label>
+                          {{form.line_two_unit_price}}
+                      </div>
+                        <div class="three wide field">
+                          <label>Line Two Total</label>
+                          {{form.line_two_total_price}}
+                      </div>
+                    </div>
+                </div>
+                  <div class="field">
+                    <div class="fields">
+                      <div class="seven wide field">
+                          <label>Line Three</label>
+                          {{form.line_three}}
+                      </div>
+                      <div class="three wide field">
+                          <label>Quantity</label>
+                          {{form.line_three_quantity}}
+                      </div>
+                        <div class="three wide field">
+                          <label>Unit Price</label>
+                          {{form.line_three_unit_price}}
+                      </div>
+                        <div class="three wide field">
+                          <label>Line Three Total</label>
+                          {{form.line_three_total_price}}
+                      </div>
+                    </div>
+                </div>
+                  <div class="field">
+                    <div class="fields">
+                      <div class="seven wide field">
+                          <label>Line Four</label>
+                          {{form.line_four}}
+                      </div>
+                      <div class="three wide field">
+                          <label>Quantity</label>
+                          {{form.line_four_quantity}}
+                      </div>
+                        <div class="three wide field">
+                          <label>Unit Price</label>
+                          {{form.line_four_unit_price}}
+                      </div>
+                        <div class="three wide field">
+                          <label>Line Four Total</label>
+                          {{form.line_four_total_price}}
+                      </div>
+                    </div>
+                </div>
+                  <div class="field">
+                    <div class="fields">
+                      <div class="seven wide field">
+                          <label>Line Five</label>
+                          {{form.line_five}}
+                      </div>
+                      <div class="three wide field">
+                          <label>Quantity</label>
+                          {{form.line_five_quantity}}
+                      </div>
+                        <div class="three wide field">
+                          <label>Unit Price</label>
+                          {{form.line_five_unit_price}}
+                      </div>
+                        <div class="three wide field">
+                          <label>Line Five Total</label>
+                          {{form.line_five_total_price}}
+                      </div>
+                    </div>
+                </div>
+                    <div class="field">
+                        <label>Invoice Type</label>
+                        {{form.invoice_type}}
+                    </div>
+                    <div class="field">
+                        <label>Total</label>
+                        {{form.total}}
+                    </div>
+                    <div class="field">
+                        <label>Paid</label>
+                        {{form.paid}}
+                    </div>
+                    <button type="submit" class="ui primary button">Save</button>
+                </form>
+
+            </div>
+        </div>
+        <div class="four wide column">
+            <h3 class="header">Recent Invoices {{total_invoices}}</h3>
+            {% for instance in queryset %}
+                <div class="ui cards">
+                    <div class="card">
+                        <div class="content">
+                            <div class="header">{{instance.name}}</div>
+                            <div class="meta">{{instance.invoice_date}}</div>
+                            <div class="description">${{instance.total}}</div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
+
